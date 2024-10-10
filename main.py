@@ -7,6 +7,7 @@ from controller.file_controller import load_csv, save_csv, save_txt
 file_path = os.path.join('assets', 'mbti_counts.csv')
 mbti_counts = {}
 if os.path.isfile(file_path):
+  print('저장된 데이터 사용')
   mbti_counts = load_csv('assets/mbti_counts.csv')
 else:
   scroll_counts = 500

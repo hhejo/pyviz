@@ -18,7 +18,8 @@ def create_plot(file_name, mbti_counts):
   mbti_types = list(mbti_counts.keys())
   counts = list(mbti_counts.values())
   plt.figure(figsize=(10, 6))
-  plt.bar(mbti_types, counts, color='skyblue')
+  colors = ['skyblue' if mbti.startswith('E') else 'tomato' for mbti in mbti_types]
+  plt.bar(mbti_types, counts, color=colors)
   plt.title('MBTI 언급량', fontsize=14)
   plt.xlabel('MBTI', fontsize=12)
   plt.ylabel('횟수', fontsize=12)
@@ -30,7 +31,13 @@ def create_plot(file_name, mbti_counts):
 
 
 def create_wordcloud(file_name, mbti_counts):
-  wordcloud = WordCloud(font_path=font_path, background_color=background_color, colormap=colormap, width=width, height=height)
+  def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    if word.startswith('E'):
+      return 'skyblue'
+    elif word.startswith('I'):
+      return 'tomato'
+  # wordcloud = WordCloud(font_path=font_path, background_color=background_color, colormap=colormap, width=width, height=height)
+  wordcloud = WordCloud(font_path=font_path, background_color=background_color, color_func=color_func, width=width, height=height)
   wordcloud = wordcloud.generate_from_frequencies(mbti_counts)
   plt.figure(figsize=(10, 5))
   plt.imshow(wordcloud, interpolation='bilinear')
