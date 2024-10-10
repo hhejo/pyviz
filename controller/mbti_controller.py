@@ -1,11 +1,3 @@
-mbtis = []
-for a in 'EI':
-  for b in 'NS':
-    for c in 'FT':
-      for d in 'JP':
-        mbtis.append(a + b + c + d)
-
-
 def get_korean(text):
   if '엔프제' in text:
     return 'ENFJ'
@@ -45,6 +37,12 @@ def get_korean(text):
 
 
 def get_mbti_counts(titles, contents):
+  mbtis = []
+  for a in 'EI':
+    for b in 'NS':
+      for c in 'FT':
+        for d in 'JP':
+          mbtis.append(a + b + c + d)
   mbti_counts = {key: 0 for key in mbtis}
   for title in titles:
     for mbti in mbtis:
