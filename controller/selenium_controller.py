@@ -24,14 +24,14 @@ def init_selenium():
 
 
 def crawl_texts(scroll_counts, start_sec, end_sec):
-  print('크롤링 시작')
   base_url = 'https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95'
   driver = init_selenium()
   driver.get(base_url)
   driver.implicitly_wait(15)
-  print('https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95 접속 완료')
+  print('연결 URL: https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95')
   start = 0
   titles, contents = [], []
+  print('크롤링 시작')
   for i in range(scroll_counts):
     title_elements = driver.find_elements(By.CSS_SELECTOR, '.article-list-pre .tit h3 > a')
     for title_element in title_elements[start:]:
