@@ -1,12 +1,8 @@
-# from dotenv import load_dotenv
 import os
-# from collections import Counter, defaultdict
-from selenium_controller import crawl_texts
-from mbti_controller import  get_mbti_counts
-from wordcloud_controller import create_wordcloud
-from file_controller import load_csv, save_csv, save_txt
-
-# load_dotenv()
+from controller.selenium_controller import crawl_texts
+from controller.mbti_controller import  get_mbti_counts
+from controller.wordcloud_controller import create_wordcloud
+from controller.file_controller import load_csv, save_csv, save_txt
 
 file_path = os.path.join('assets', 'mbti_counts.csv')
 if os.path.isfile(file_path):
@@ -21,4 +17,5 @@ else:
   save_csv('assets/mbti_counts.csv', mbti_counts)
   save_txt('assets/titles.txt', titles)
   save_txt('assets/contents.txt', contents)
+
 print('MBTI 통계: ', mbti_counts)
