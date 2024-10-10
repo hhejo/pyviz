@@ -10,6 +10,7 @@ import random
 
 
 def init_selenium():
+  print('Selenium 초기화 시작')
   ssl._create_default_https_context = ssl._create_unverified_context
   chrome_options = Options()
   chrome_options.add_experimental_option('detach', True)
@@ -18,14 +19,17 @@ def init_selenium():
   chrome_options.add_argument('--disable-dev-shm-usage')  # 메모리 문제 방지 (권장 옵션)
   Service(executable_path=ChromeDriverManager().install())
   driver = webdriver.Chrome(options=chrome_options)
+  print('Selenium 초기화 완료')
   return driver
 
 
 def crawl_texts(scroll_counts, start_sec, end_sec):
+  print('크롤링 시작')
   base_url = 'https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95'
   driver = init_selenium()
   driver.get(base_url)
   driver.implicitly_wait(15)
+  print('https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95 접속 완료')
   start = 0
   titles, contents = [], []
   for i in range(scroll_counts):
@@ -35,7 +39,7 @@ def crawl_texts(scroll_counts, start_sec, end_sec):
     content_elements = driver.find_elements(By.CSS_SELECTOR, '.article-list-pre .tit p > a')
     for content_element in content_elements[start:]:
       contents.append(content_element.text.upper())
-    print(f'{i + 1} 제목 / 내용: {len(titles)} / {len(contents)}')
+    print(f'{i + 1}/{scroll_counts} 제목, 내용: {len(titles)}, {len(contents)}')
     action = driver.find_element(By.CSS_SELECTOR, 'body')
     action.send_keys(Keys.END)
     if i == 0:
@@ -43,4 +47,5 @@ def crawl_texts(scroll_counts, start_sec, end_sec):
     start += 20
     sleep_time = round(random.uniform(start_sec, end_sec), 3)
     time.sleep(sleep_time)
+  print('크롤링 완료')
   return titles, contents

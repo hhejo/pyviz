@@ -44,6 +44,7 @@ def get_mbti_counts(titles, contents):
         for d in 'JP':
           mbtis.append(a + b + c + d)
   mbti_counts = {key: 0 for key in mbtis}
+  print('제목에서 MBTI 추출 시작')
   for title in titles:
     for mbti in mbtis:
       if mbti in title:
@@ -51,6 +52,8 @@ def get_mbti_counts(titles, contents):
     result = get_korean(title)
     if result:
       mbti_counts[result] += 1
+  print('제목에서 MBTI 추출 완료')
+  print('내용에서 MBTI 추출 시작')
   for content in contents:
     for mbti in mbtis:
       if mbti in content:
@@ -58,4 +61,5 @@ def get_mbti_counts(titles, contents):
     result = get_korean(content)
     if result:
       mbti_counts[result] += 1
+  print('내용에서 MBTI 추출 완료')
   return mbti_counts

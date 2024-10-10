@@ -7,6 +7,7 @@ def load_csv(file_name):
     reader = csv.reader(file)
     next(reader)
     mbti_counts = {rows[0]: int(rows[1]) for rows in reader}
+  print(f'{file_name} 불러오기 완료')
   return mbti_counts
 
 
