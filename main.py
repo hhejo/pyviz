@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 import time
 import os
 import requests
+from konlpy.tag import Okt
 
 # 설정
 load_dotenv()
@@ -30,7 +31,7 @@ login_id.send_keys(os.environ.get('ID'))
 login_pwd = driver.find_element(By.CSS_SELECTOR, 'input[name="password"]')
 login_pwd.send_keys(os.environ.get('PW'))
 login_id.send_keys(Keys.ENTER)
-time.sleep(7)
+time.sleep(5)
 
 # 게시물 목록
 food_url = 'https://www.instagram.com/hoseofood/'
@@ -40,20 +41,27 @@ driver.implicitly_wait(10)
 def get_article():
   return el.text
 
+li = []
+
 # 첫 게시글
 element = driver.find_element(By.CSS_SELECTOR, '._ac7v a')
 element.click()
 driver.implicitly_wait(10)
 element = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
-print(element.text)
-print('----------------------------------------------------')
+li.append(element.text)
 
 # 계속 다음 게시글 가져오기
-COUNTS = 20
+COUNTS = 10
 for _ in range(COUNTS):
   next_button = driver.find_element(By.CSS_SELECTOR, '._aaqg ._abl-')
   next_button.click()
-  time.sleep(2)
+  time.sleep(0.5)
   el = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
-  print(el.text)
-  print('----------------------------------------------------')
+  li.append(el.text)
+
+print(li)
+str = ''.join(li)
+
+okt = Okt()
+result = okt.nouns(str)
+print(result)
