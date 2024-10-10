@@ -28,7 +28,7 @@ def crawl_texts(scroll_counts, start_sec, end_sec):
   driver = init_selenium()
   driver.get(base_url)
   driver.implicitly_wait(15)
-  print('연결 URL: https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95')
+  print(f'연결 URL: {base_url}')
   start = 0
   titles, contents = [], []
   print('크롤링 시작')
