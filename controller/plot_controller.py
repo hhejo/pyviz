@@ -14,6 +14,21 @@ height = 800
 # stopwords=STOPWORDS
 
 
+def create_plot(file_name, mbti_counts):
+  mbti_types = list(mbti_counts.keys())
+  counts = list(mbti_counts.values())
+  plt.figure(figsize=(10, 6))
+  plt.bar(mbti_types, counts, color='skyblue')
+  plt.title('MBTI 언급량', fontsize=14)
+  plt.xlabel('MBTI', fontsize=12)
+  plt.ylabel('횟수', fontsize=12)
+  plt.xticks(rotation=45)
+  plt.tight_layout()
+  plt.savefig(file_name)
+  plt.close()
+  print(f'{file_name} 저장 완료')
+
+
 def create_wordcloud(file_name, mbti_counts):
   wordcloud = WordCloud(font_path=font_path, background_color=background_color, colormap=colormap, width=width, height=height)
   wordcloud = wordcloud.generate_from_frequencies(mbti_counts)
