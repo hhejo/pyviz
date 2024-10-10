@@ -10,6 +10,9 @@ import ssl
 import time
 import os
 from collections import Counter
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from matplotlib import rc
 # 
 import urllib.request
 from bs4 import BeautifulSoup
@@ -23,6 +26,9 @@ chrome_options.add_experimental_option('detach', True)
 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 service = Service(executable_path=ChromeDriverManager().install())
 driver = webdriver.Chrome(options=chrome_options)
+
+rc('font', family='AppleGothic')
+plt.rcParams['axes.unicode_minus'] = False
 
 # 로그인
 base_url = 'https://www.instagram.com'
@@ -40,33 +46,50 @@ food_url = 'https://www.instagram.com/hoseofood/'
 driver.get(food_url)
 driver.implicitly_wait(10)
 
-def get_article():
-  return el.text
-
-li = []
+texts = []
 
 # 첫 게시글
-element = driver.find_element(By.CSS_SELECTOR, '._ac7v a')
-element.click()
+article = driver.find_element(By.CSS_SELECTOR, '._ac7v a')
+article.click()
 driver.implicitly_wait(10)
-element = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
-li.append(element.text)
+detail = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
+texts.append(detail.text)
 
 # 계속 다음 게시글 가져오기
 COUNTS = 20
 for _ in range(COUNTS):
   next_button = driver.find_element(By.CSS_SELECTOR, '._aaqg ._abl-')
   next_button.click()
-  time.sleep(0.5)
-  el = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
-  li.append(el.text)
+  time.sleep(0.3)
+  detail = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
+  texts.append(detail.text)
 
-print(li)
-str = ''.join(li)
-
+# 명사 추출
 okt = Okt()
-tokens = okt.nouns(str)
+tokens = okt.nouns(''.join(texts))
+print(tokens)
 
-nouns_counter = Counter(tokens)
-top_nouns = dict(nouns_counter.most_common(20))
-print(top_nouns)
+# # 빈도수 확인
+# LENGTH = 30
+# nouns_counter = Counter(tokens)
+# top_nouns = dict(nouns_counter.most_common(LENGTH))
+# print(top_nouns)
+
+# 시각화
+font_path = '/Library/Fonts/AppleGothic'
+word = ' '.join(tokens)
+# max_words=100
+# stopwords=STOPWORDS
+wordcloud = WordCloud(font_path, background_color='white', colormap='Accent_r', width=800, height=800)
+wordcloud = wordcloud.generate(word)
+# wordcloud_words = wordcloud.generate_from_frequencies(word)
+array = wordcloud.to_array()
+fig = plt.figure(figsize=(10, 10))
+plt.imshow(array, interpolation='bilinear')
+plt.axis('off')
+plt.show()
+fig.savefig('wordcloud.png')
+
+# 제외 단어 설정
+# from wordcloud import STOPWORDS
+# STOPWORDS.add('가산', '맛', '메뉴')
