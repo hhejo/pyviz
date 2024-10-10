@@ -4,14 +4,16 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from konlpy.tag import Okt
 from dotenv import load_dotenv
-import urllib.request
 import ssl
-from bs4 import BeautifulSoup
 import time
 import os
+from collections import Counter
+# 
+import urllib.request
+from bs4 import BeautifulSoup
 import requests
-from konlpy.tag import Okt
 
 # 설정
 load_dotenv()
@@ -51,7 +53,7 @@ element = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
 li.append(element.text)
 
 # 계속 다음 게시글 가져오기
-COUNTS = 10
+COUNTS = 20
 for _ in range(COUNTS):
   next_button = driver.find_element(By.CSS_SELECTOR, '._aaqg ._abl-')
   next_button.click()
@@ -63,5 +65,8 @@ print(li)
 str = ''.join(li)
 
 okt = Okt()
-result = okt.nouns(str)
-print(result)
+tokens = okt.nouns(str)
+
+nouns_counter = Counter(tokens)
+top_nouns = dict(nouns_counter.most_common(20))
+print(top_nouns)
