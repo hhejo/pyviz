@@ -37,15 +37,23 @@ food_url = 'https://www.instagram.com/hoseofood/'
 driver.get(food_url)
 driver.implicitly_wait(10)
 
+def get_article():
+  return el.text
 
+# 첫 게시글
+element = driver.find_element(By.CSS_SELECTOR, '._ac7v a')
+element.click()
+driver.implicitly_wait(10)
+element = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
+print(element.text)
+print('----------------------------------------------------')
 
-elements = driver.find_elements(By.CSS_SELECTOR, '._ac7v a')
-for element in elements:
-  print(element)
-  element.click()
-  driver.implicitly_wait(10)
+# 계속 다음 게시글 가져오기
+COUNTS = 20
+for _ in range(COUNTS):
+  next_button = driver.find_element(By.CSS_SELECTOR, '._aaqg ._abl-')
+  next_button.click()
+  time.sleep(2)
   el = driver.find_element(By.CSS_SELECTOR, '._a9zs h1')
   print(el.text)
-  driver.find_element(By.CSS_SELECTOR, '._abl-').click()
-  time.sleep(1)
   print('----------------------------------------------------')
