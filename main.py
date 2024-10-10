@@ -3,7 +3,7 @@ import os
 # from collections import Counter, defaultdict
 from selenium_controller import crawl_texts
 from mbti_controller import  get_mbti_counts
-from mbti_wordcloud import create_wordcloud
+from wordcloud_controller import create_wordcloud
 from file_controller import load_csv, save_csv, save_txt
 
 # load_dotenv()

@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from konlpy.tag import Okt
-from mbti_wordcloud import WordCloud
+from wordcloud_controller import WordCloud
 import matplotlib.pyplot as plt
 from matplotlib import rc
 from openai import OpenAI
