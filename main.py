@@ -1,8 +1,8 @@
 import os
-from controller.selenium_controller import crawl_texts
-from controller.mbti_controller import  get_mbti_counts
-from controller.plot_controller import create_plot, create_wordcloud, create_specific_plot
-from controller.file_controller import load_csv, save_csv, save_txt
+from controllers.selenium_controller import crawl_texts
+from controllers.mbti_controller import  get_mbti_counts
+from controllers.plot_controller import create_plot, create_wordcloud, create_specific_plot
+from controllers.file_controller import load_csv, save_csv, save_txt
 
 
 def exec_crawl(scroll_counts, min_wait_sec, max_wait_sec):
@@ -29,4 +29,4 @@ def exec_crawl(scroll_counts, min_wait_sec, max_wait_sec):
 
 
 if __name__ == '__main__':
-    exec_crawl(450, 3, 4.5)
+    exec_crawl(400, 4, 5)
