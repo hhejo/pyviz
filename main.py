@@ -29,4 +29,4 @@ def exec_crawl(scroll_counts, min_wait_sec, max_wait_sec):
 
 
 if __name__ == '__main__':
-    exec_crawl(400, 4, 5)
+    exec_crawl(3, 1.5, 2.2)

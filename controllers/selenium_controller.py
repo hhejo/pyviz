@@ -15,10 +15,10 @@ def init_selenium():
     chrome_options = Options()  # Selenium 크롬 브라우저 옵션 객체
     chrome_options.add_experimental_option('detach', True)  # 브라우저를 종료하지 않고 계속 실행 상태로 유지
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 불필요한 로그 출력 비활성화 (DevTools 로그 등)
-    chrome_options.add_argument('headless')  # Headless 모드 활성화
-    chrome_options.add_argument('--disable-gpu')  # GPU 가속을 비활성화해 안정성 증가
-    chrome_options.add_argument('--window-size=1920x1080')  # 화면 크기를 명시적으로 설정
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36")  # User-Agent 변경
+    # chrome_options.add_argument('headless')  # Headless 모드 활성화
+    # chrome_options.add_argument('--disable-gpu')  # GPU 가속을 비활성화해 안정성 증가
+    # chrome_options.add_argument('--window-size=1920x1080')  # 화면 크기를 명시적으로 설정
+    # chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36")  # User-Agent 변경
     chrome_options.add_argument('--no-sandbox')  # 보호된 리소스 사용 제한 해제 (Docker나 리소스 제약 환경에서 사용)
     chrome_options.add_argument('--disable-dev-shm-usage')  # 공유 메모리 사용을 비활성화해 메모리 문제 방지 (리소스가 적은 환경에서 유용)
     Service(executable_path=ChromeDriverManager().install())  # ChromeDriver의 실행 경로를 설정 및 설치 (ChromeDriverManager를 이용해 자동 설치)
