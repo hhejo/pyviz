@@ -22,7 +22,7 @@
 
 ## 1. 소개
 
-[PyViz]()
+**PyViz**
 
 - `Selenium`과 `Matplotlib`, `WordCloud`를 이용한 웹 크롤링, 데이터 시각화 프로젝트
 - Blind의 [성격유형](https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95) 게시판을 크롤링해 게시글 제목, 내용을 저장
