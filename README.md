@@ -1,10 +1,12 @@
-# PYVIZ
+# 파이비즈 (PyViz)
 
 ## 요약
 
-| ![1. MBTI별 언급량](./backup/mbti_plot_backup.png)                    | ![2. MBTI별 언급량 워드 클라우드](./backup/mbti_wordcloud_backup.png) |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| ![3. MBTI 세부 항목별 언급량](./backup/mbti_plot_specific_backup.png) |                                                                       |
+> 웹 커뮤니티 MBTI 언급량 크롤링, 데이터 분석·시각화
+
+![파이비즈 (PyViz)](./backup/mbti_plot_backup.png)
+
+![파이비즈 (PyViz)](./backup/mbti_wordcloud_backup.png)
 
 ## 상세
 
@@ -22,7 +24,7 @@
 
 ## 1. 소개
 
-**PyViz**
+**파이비즈 (PyViz)**
 
 - `Selenium`과 `Matplotlib`, `WordCloud`를 이용한 웹 크롤링, 데이터 시각화 프로젝트
 - Blind의 [성격유형](https://www.teamblind.com/kr/topics/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95) 게시판을 크롤링해 게시글 제목, 내용을 저장
@@ -31,9 +33,16 @@
 - `E`/`I`, `N`/`S`, `F`/`T`, `J`/`P` 별로 얼마나 언급되었는지 시각화
 - 워드클라우드로도 시각화
 
+작업 기간
+
+- 2024/10, 1주
+
+인력 구성
+
+- 1인
+
 ## 2. 기술 스택
 
-<!-- Python -->
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 
 ## 3. 느낀 점
