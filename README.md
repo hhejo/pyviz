@@ -4,9 +4,7 @@
 
 > 웹 커뮤니티 MBTI 언급량 크롤링, 데이터 분석·시각화
 
-![파이비즈 (PyViz)](./backup/mbti_plot_backup.png)
-
-![파이비즈 (PyViz)](./backup/mbti_wordcloud_backup.png)
+![파이비즈 (PyViz)](./assets/000-pyviz-main.png)
 
 ## 상세
 
