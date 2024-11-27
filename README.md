@@ -77,6 +77,10 @@ pip install requests
 5. `file_controller.py`
    - 크롤링한 데이터를 파일로 저장
 
+시연 영상
+
+- `assets` 폴더에 위치
+
 ### MBTI 그래프
 
 MBTI별 언급량
